@@ -8,6 +8,7 @@ using Telegram.Bot;
 using Telegram.Bot.Types;
 using System.Dynamic; 
 using System.Reflection;
+using SeijaTelegram.Main;
 
 namespace SeijaTelegram.Commands
 {
@@ -28,6 +29,11 @@ namespace SeijaTelegram.Commands
         {
             if (action != null)
             {
+                if (isMasterOnly && msg.From.Id != Brain.settings.masterId)
+                {
+                    Brain.SendMessage("Action is restricted. Try turning your life off and on to be reborn as my master.", msg.Chat.Id, msg.MessageId).Wait();
+                    return; //TODO: bad return, rewrite this
+                }
                 try {
                     action(msg, args);
                 } catch (Exception ex)

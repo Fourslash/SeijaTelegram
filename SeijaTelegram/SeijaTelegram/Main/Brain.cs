@@ -16,6 +16,8 @@ namespace SeijaTelegram.Main
     class Brain
     {
         public static Settings settings { get; set; }
+        public static Twitter.TwitterConnector twitterConnector;
+            
         public static User selfConsciousness;
         static Api bot;
         static CommandConroller commandController;
@@ -26,6 +28,7 @@ namespace SeijaTelegram.Main
             bot = new Api(settings.apiKey);
             selfConsciousness = bot.GetMe().Result;
             commandController = new CommandConroller();
+            twitterConnector = new Twitter.TwitterConnector();
         }
 
         public static int CheckNews(int offset)

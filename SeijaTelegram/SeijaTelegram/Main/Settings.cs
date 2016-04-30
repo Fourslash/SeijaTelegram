@@ -13,12 +13,15 @@ namespace SeijaTelegram.Main
         public long botId { get; set; }
         public long homeGroupId { get; set; }
         public string apiKey { get; set; }
+        public string twitterConsumerKey { get; set; }
+        public string twitterConsumerSecret { get; set; }
         public List<string> botAliases { get; set; }
 
         public static Settings Load(string pathToFile)
         {
             try
             {
+
                 var json = System.IO.File.ReadAllText(pathToFile);
                 return JsonConvert.DeserializeObject<Settings>(json);
             }

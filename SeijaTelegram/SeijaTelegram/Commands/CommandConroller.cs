@@ -20,13 +20,15 @@ namespace SeijaTelegram.Commands
             {
                 new Command("Hug", Actions.Hug),
                 new Command("Poll", Actions.Poll),
+                new Command("ClearPoll", Actions.ClearPoll),
+                new Command("AngelHalo", Actions.AngelHalo),
             };
             simpleCommands = new XmlDictionary(simpleCommandPath);
         }
 
         public bool TryExecute(string command, string[] args, Message msg)
         {
-            var complexCommand = commands.Find(cmd => cmd.keywords.Contains(command));
+            var complexCommand = commands.Find(cmd => cmd.keywords.Select(k => k.ToLower()).Contains(command));
             if (complexCommand != null)
             {
                 Logger.Log(String.Format("Proessing command {0}", command));
