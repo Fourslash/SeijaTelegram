@@ -12,6 +12,8 @@ namespace SeijaTelegram
     {
         static void Main(string[] args)
         {
+            Console.WindowWidth = 20;
+            Console.WindowHeight = 5;
             Heart.StartBeating();
 
         }

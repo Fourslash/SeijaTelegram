@@ -37,13 +37,18 @@ namespace SeijaTelegram.Main
             int newOffset = offset;
             foreach (var update in updates)
             {
-                var message = update.Message;
-                var timeElapsed = DateTime.UtcNow - message.Date;
-                if (timeElapsed.TotalMinutes <= 5)
+                if (update.Message != null)
                 {
-                    if (update.Message.Type == MessageType.TextMessage)
+                    var message = update.Message;
+
+                    var timeElapsed = DateTime.UtcNow - message.Date;
+                    if (timeElapsed.TotalMinutes <= 5)
                     {
-                        ProcessTextMessage(message);
+                        if (update.Message.Type == MessageType.TextMessage)
+                        {
+
+                            ProcessTextMessage(message);
+                        }
                     }
                 }
                 newOffset = update.Id + 1;
